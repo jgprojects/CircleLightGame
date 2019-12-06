@@ -1,14 +1,14 @@
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
 public class CircleLightGame {
-	// Constants
-	private static final int NUM_LIGHTS = 20;
-	
 	// Instance Variables
-	private State mState;
 	private CircleLightPanel mPanel;
 	
 	// Constructor
@@ -16,22 +16,19 @@ public class CircleLightGame {
 		// init
 		JFrame frame = new JFrame("Circle Light Game");
 		
-		mState = State.Init;
-		
-		mPanel = new CircleLightPanel(NUM_LIGHTS);
+		mPanel = new CircleLightPanel();
 		frame.add(BorderLayout.CENTER, mPanel);
 		
 		JButton button = new JButton("Click");
+		button.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				mPanel.onButtonClicked();
+			}
+		});
 		frame.add(BorderLayout.SOUTH, button);
 		
-		
-		frame.setSize(400, 500);
+		frame.setSize(900, 800);
 		frame.setVisible(true);
-	}
-	
-	// Private Methods
-	
-	private void update() {
-		
 	}
 }
